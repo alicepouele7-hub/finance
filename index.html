@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceApprentis - Mobile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-white font-sans antialiased">
+
+    <!-- En-tête Responsive -->
+    <header class="bg-gray-800 border-b border-gray-700 p-4 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <h1 class="text-xl sm:text-2xl font-bold text-emerald-400 text-center">Investissement pour Tous</h1>
+            <nav class="flex flex-wrap justify-center gap-2 sm:gap-4">
+                <button onclick="showSection('cours')" class="hover:text-emerald-400 transition font-medium px-3 py-2 text-sm sm:text-base bg-gray-700 sm:bg-transparent rounded sm:rounded-none">L'Académie</button>
+                <button onclick="showSection('quiz')" class="hover:text-emerald-400 transition font-medium px-3 py-2 text-sm sm:text-base bg-gray-700 sm:bg-transparent rounded sm:rounded-none">Quiz</button>
+                <button onclick="showSection('simulateur')" class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded transition font-bold shadow-lg text-sm sm:text-base">Simulateur</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-4 sm:p-6 mt-2">
+        
+        <!-- SECTION : COURS -->
+        <section id="cours" class="section-active">
+            <h2 class="text-2xl sm:text-3xl font-semibold mb-6 border-b border-gray-700 pb-2">Le Guide Complet</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <!-- Les cartes ont été allégées pour mobile -->
+                <div class="bg-gray-800 p-5 rounded-lg shadow-lg border-t-4 border-yellow-500 active:scale-95 transition cursor-pointer" onclick="openModal('modal-bases')">
+                    <span class="text-xs font-bold bg-yellow-900 text-yellow-300 px-2 py-1 rounded mb-2 inline-block">1. Les Bases</span>
+                    <h3 class="text-md sm:text-lg font-bold text-yellow-400 mb-2">Inflation & Intérêts</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-3">La magie des intérêts composés.</p>
+                    <span class="text-yellow-300 font-semibold text-sm">Lire &rarr;</span>
+                </div>
+                <div class="bg-gray-800 p-5 rounded-lg shadow-lg border-t-4 border-yellow-500 active:scale-95 transition cursor-pointer" onclick="openModal('modal-actifs')">
+                    <span class="text-xs font-bold bg-yellow-900 text-yellow-300 px-2 py-1 rounded mb-2 inline-block">2. Les Actifs</span>
+                    <h3 class="text-md sm:text-lg font-bold text-yellow-400 mb-2">Actions vs Obligations</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-3">Comprendre le risque et la sécurité.</p>
+                    <span class="text-yellow-300 font-semibold text-sm">Lire &rarr;</span>
+                </div>
+                <div class="bg-gray-800 p-5 rounded-lg shadow-lg border-t-4 border-emerald-500 active:scale-95 transition cursor-pointer" onclick="openModal('modal-etf')">
+                    <span class="text-xs font-bold bg-emerald-900 text-emerald-300 px-2 py-1 rounded mb-2 inline-block">3. L'Arme Secrète</span>
+                    <h3 class="text-md sm:text-lg font-bold text-emerald-400 mb-2">Les ETF (Trackers)</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-3">Acheter le monde entier en un clic.</p>
+                    <span class="text-emerald-300 font-semibold text-sm">Lire &rarr;</span>
+                </div>
+                <div class="bg-gray-800 p-5 rounded-lg shadow-lg border-t-4 border-emerald-500 active:scale-95 transition cursor-pointer" onclick="openModal('modal-pea')">
+                    <span class="text-xs font-bold bg-emerald-900 text-emerald-300 px-2 py-1 rounded mb-2 inline-block">4. Fiscalité</span>
+                    <h3 class="text-md sm:text-lg font-bold text-emerald-400 mb-2">Le PEA</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-3">Le meilleur compte pour investir.</p>
+                    <span class="text-emerald-300 font-semibold text-sm">Lire &rarr;</span>
+                </div>
+                <div class="bg-gray-800 p-5 rounded-lg shadow-lg border-t-4 border-blue-500 active:scale-95 transition cursor-pointer" onclick="openModal('modal-dca')">
+                    <span class="text-xs font-bold bg-blue-900 text-blue-300 px-2 py-1 rounded mb-2 inline-block">5. Stratégie</span>
+                    <h3 class="text-md sm:text-lg font-bold text-blue-400 mb-2">La Méthode DCA</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-3">Investir sans stress tous les mois.</p>
+                    <span class="text-blue-300 font-semibold text-sm">Lire &rarr;</span>
+                </div>
+                <div class="bg-gray-800 p-5 rounded-lg shadow-lg border-t-4 border-blue-500 active:scale-95 transition cursor-pointer" onclick="openModal('modal-bce')">
+                    <span class="text-xs font-bold bg-blue-900 text-blue-300 px-2 py-1 rounded mb-2 inline-block">6. Macro-Économie</span>
+                    <h3 class="text-md sm:text-lg font-bold text-blue-400 mb-2">La BCE & Les Taux</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-3">Ce qui fait bouger les marchés.</p>
+                    <span class="text-blue-300 font-semibold text-sm">Lire &rarr;</span>
+                </div>
+                <div class="bg-gray-800 p-5 rounded-lg shadow-lg border-t-4 border-purple-500 active:scale-95 transition cursor-pointer" onclick="openModal('modal-analyse')">
+                    <span class="text-xs font-bold bg-purple-900 text-purple-300 px-2 py-1 rounded mb-2 inline-block">7. Analyse</span>
+                    <h3 class="text-md sm:text-lg font-bold text-purple-400 mb-2">Évaluer une action</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-3">PER, rendement, capitalisation.</p>
+                    <span class="text-purple-300 font-semibold text-sm">Lire &rarr;</span>
+                </div>
+                <div class="bg-gray-800 p-5 rounded-lg shadow-lg border-t-4 border-purple-500 active:scale-95 transition cursor-pointer" onclick="openModal('modal-psycho')">
+                    <span class="text-xs font-bold bg-purple-900 text-purple-300 px-2 py-1 rounded mb-2 inline-block">8. Mindset</span>
+                    <h3 class="text-md sm:text-lg font-bold text-purple-400 mb-2">Psychologie</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-3">FOMO et gestion de la panique.</p>
+                    <span class="text-purple-300 font-semibold text-sm">Lire &rarr;</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION : QUIZ -->
+        <section id="quiz" class="hidden">
+            <h2 class="text-2xl sm:text-3xl font-semibold mb-6 border-b border-gray-700 pb-2">Certification (15 Questions)</h2>
+            <div class="bg-gray-800 p-4 sm:p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
+                <div id="quiz-container">
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-4 sm:mb-6">
+                        <div id="quiz-progress" class="bg-emerald-500 h-2 rounded-full" style="width: 0%"></div>
+                    </div>
+                    <h3 id="question-text" class="text-lg sm:text-xl font-bold mb-4 sm:mb-6 leading-snug">Chargement...</h3>
+                    <div id="options-container" class="space-y-2 sm:space-y-3"></div>
+                </div>
+                <div id="result-container" class="hidden text-center py-6">
+                    <h3 class="text-2xl sm:text-3xl font-bold text-emerald-400 mb-4">Quiz terminé !</h3>
+                    <p id="score-text" class="text-xl sm:text-2xl mb-2"></p>
+                    <p id="score-message" class="text-gray-300 mb-6 text-sm sm:text-lg"></p>
+                    <button onclick="startQuiz()" class="bg-emerald-500 hover:bg-emerald-600 px-6 py-3 rounded text-white font-bold w-full sm:w-auto shadow-lg">Refaire le test</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION : SIMULATEUR -->
+        <section id="simulateur" class="hidden">
+            <!-- En-tête du simulateur (S'adapte sur mobile) -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-4 border-b border-gray-700 pb-2 gap-2">
+                <h2 class="text-2xl sm:text-3xl font-semibold">Marchés en Direct</h2>
+                <div class="bg-gray-800 sm:bg-transparent p-2 sm:p-0 rounded w-full sm:w-auto text-center sm:text-right">
+                    <span class="text-gray-400 text-xs sm:text-sm block">Cash disponible</span>
+                    <span id="cash-balance" class="text-xl sm:text-2xl font-bold text-white">10000.00 €</span>
+                </div>
+            </div>
+
+            <!-- Fil d'actualité -->
+            <div class="bg-gray-800 border-l-4 border-red-500 p-3 sm:p-4 mb-4 sm:mb-6 rounded shadow-lg flex flex-col sm:flex-row items-start sm:items-center gap-2">
+                <div class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded uppercase animate-pulse shrink-0">Flash Éco</div>
+                <div id="news-ticker" class="text-gray-200 font-medium font-mono text-xs sm:text-sm leading-tight">En attente d'ouverture des marchés...</div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+                <!-- Graphique (Taille fixe sur mobile pour ne pas écraser l'écran) -->
+                <div class="lg:col-span-2 bg-gray-800 p-2 sm:p-4 rounded-lg shadow-lg relative h-[250px] sm:h-[400px]">
+                    <canvas id="marketChart"></canvas>
+                </div>
+                
+                <!-- Terminal d'ordres -->
+                <div class="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg flex flex-col">
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 text-emerald-400">Terminal d'Ordres</h3>
+                    
+                    <div class="mb-3">
+                        <label class="block text-gray-400 text-xs sm:text-sm mb-1">Choisir un actif :</label>
+                        <select id="asset-selector" class="w-full bg-gray-700 border border-gray-600 text-white rounded p-3 text-sm sm:text-base focus:outline-none focus:border-emerald-500" onchange="updateTradingPanel()">
+                            <option value="etf">ETF Global (Très sûr)</option>
+                            <option value="bond">Obligations d'État</option>
+                            <option value="bank">Action Banque</option>
+                            <option value="tech">Action Tech (Très Risqué)</option>
+                        </select>
+                    </div>
+
+                    <div class="bg-gray-900 p-3 rounded mb-4 border border-gray-700">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-gray-400 text-sm">Prix unitaire :</span>
+                            <span id="selected-price" class="text-lg sm:text-xl font-bold text-white">0.00 €</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400 text-sm">En portefeuille :</span>
+                            <span id="selected-shares" class="text-md sm:text-lg font-bold text-emerald-400">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-2 mb-4 mt-auto">
+                        <button onclick="tradeAsset('buy', 5)" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 sm:py-2 rounded transition text-sm sm:text-base active:scale-95">Achat (x5)</button>
+                        <button onclick="tradeAsset('sell', 5)" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 sm:py-2 rounded transition text-sm sm:text-base active:scale-95">Vente (x5)</button>
+                    </div>
+
+                    <div class="border-t border-gray-700 pt-3">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-gray-300 text-sm sm:text-base">Valeur Portefeuille :</span>
+                            <span id="total-value" class="text-lg sm:text-xl font-bold text-white">10000.00 €</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400 text-xs sm:text-sm">Performance :</span>
+                            <span id="profit-loss" class="text-sm sm:text-md font-bold text-gray-400">0.00 €</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modales de Cours (Le contenu reste le même, la CSS gère la version mobile) -->
+    <div id="modal-bases" class="modal"><div class="modal-content bg-gray-800 border border-yellow-500"><span class="close" onclick="closeModal('modal-bases')">&times;</span><h2 class="text-xl sm:text-2xl font-bold mb-4 text-yellow-400">1. Inflation et Intérêts</h2><div class="space-y-4 text-gray-300 text-sm sm:text-base leading-relaxed"><p><strong>L'Inflation :</strong> C'est l'augmentation générale des prix. Si l'inflation est de 3% par an, vos 100€ sur un compte courant ne vaudront plus que 97€ en pouvoir d'achat.</p><p><strong>Intérêts Composés :</strong> Lorsque vous investissez, vous gagnez des intérêts. L'année suivante, vous gagnez des intérêts SUR vos intérêts ! La croissance est exponentielle.</p></div></div></div>
+    <div id="modal-actifs" class="modal"><div class="modal-content bg-gray-800 border border-yellow-500"><span class="close" onclick="closeModal('modal-actifs')">&times;</span><h2 class="text-xl sm:text-2xl font-bold mb-4 text-yellow-400">2. Actions vs Obligations</h2><div class="space-y-4 text-gray-300 text-sm sm:text-base leading-relaxed"><p><strong>L'Action :</strong> Part d'entreprise (risque). Potentiel de gain élevé (7-9%/an) mais forte volatilité à court terme.</p><p><strong>L'Obligation :</strong> Prêt à un État/entreprise (sécurité). Rendement fixe connu à l'avance (3-5%/an).</p></div></div></div>
+    <div id="modal-etf" class="modal"><div class="modal-content bg-gray-800 border border-emerald-500"><span class="close" onclick="closeModal('modal-etf')">&times;</span><h2 class="text-xl sm:text-2xl font-bold mb-4 text-emerald-400">3. Les ETF (Trackers)</h2><div class="space-y-4 text-gray-300 text-sm sm:text-base leading-relaxed"><p>Un ETF est un panier qui contient des centaines d'actions. L'ETF <em>MSCI World</em> achète les 1500 plus grandes entreprises mondiales.</p><p><strong>Avantages :</strong> Diversification totale, frais minuscules (0.2%), et ils battent 90% des professionnels sur le long terme !</p></div></div></div>
+    <div id="modal-pea" class="modal"><div class="modal-content bg-gray-800 border border-emerald-500"><span class="close" onclick="closeModal('modal-pea')">&times;</span><h2 class="text-xl sm:text-2xl font-bold mb-4 text-emerald-400">4. Le PEA</h2><div class="space-y-4 text-gray-300 text-sm sm:text-base leading-relaxed"><p><strong>PEA (Plan d'Épargne en Actions) :</strong> Si gardé 5 ans, 0% d'impôt sur les plus-values (uniquement prélèvements sociaux 17.2%). C'est le compte indispensable en France.</p></div></div></div>
+    <div id="modal-dca" class="modal"><div class="modal-content bg-gray-800 border border-blue-500"><span class="close" onclick="closeModal('modal-dca')">&times;</span><h2 class="text-xl sm:text-2xl font-bold mb-4 text-blue-400">5. La Méthode DCA</h2><div class="space-y-4 text-gray-300 text-sm sm:text-base leading-relaxed"><p><strong>Dollar Cost Averaging :</strong> Investir une somme fixe (ex: 150€) à date fixe, peu importe si la bourse monte ou descend.</p><p>Si la bourse s'effondre, vos 150€ achètent plus de parts. Cela enlève l'émotion de l'investissement.</p></div></div></div>
+    <div id="modal-bce" class="modal"><div class="modal-content bg-gray-800 border border-blue-500"><span class="close" onclick="closeModal('modal-bce')">&times;</span><h2 class="text-xl sm:text-2xl font-bold mb-4 text-blue-400">6. La BCE</h2><div class="space-y-4 text-gray-300 text-sm sm:text-base leading-relaxed"><p><strong>Hausse des taux :</strong> Si l'inflation monte, la BCE monte les taux. Les crédits sont chers, la bourse baisse.</p><p><strong>Baisse des taux :</strong> L'argent est gratuit, l'économie repart, la bourse explose à la hausse.</p></div></div></div>
+    <div id="modal-analyse" class="modal"><div class="modal-content bg-gray-800 border border-purple-500"><span class="close" onclick="closeModal('modal-analyse')">&times;</span><h2 class="text-xl sm:text-2xl font-bold mb-4 text-purple-400">7. Évaluer une action</h2><div class="space-y-4 text-gray-300 text-sm sm:text-base leading-relaxed"><p><strong>PER :</strong> Prix de l'action / Bénéfice. S'il est > 30, l'action est souvent jugée très chère.</p><p><strong>Capitalisation :</strong> Prix de l'action x nombre total d'actions = Valeur totale de l'entreprise.</p></div></div></div>
+    <div id="modal-psycho" class="modal"><div class="modal-content bg-gray-800 border border-purple-500"><span class="close" onclick="closeModal('modal-psycho')">&times;</span><h2 class="text-xl sm:text-2xl font-bold mb-4 text-purple-400">8. Psychologie</h2><div class="space-y-4 text-gray-300 text-sm sm:text-base leading-relaxed"><p><strong>FOMO :</strong> Acheter par peur de rater une opportunité (souvent au plus haut de la bulle).</p><p><strong>Panique :</strong> Vendre pendant un krach. Historiquement, le marché finit toujours par remonter. Tant qu'on a pas vendu, on n'a pas perdu.</p></div></div></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
